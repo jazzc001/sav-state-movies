@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import { toUnicode } from 'punycode';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
+
+  const [movies, setMovies] = useState([])
+  const [error, setError] = useState({})
+
+  interface Movie {
+    id: number;
+    name: string;
+
+  }
+
+
+  useEffect(()=> {
+    fetch('https://api.tvmaze.com/schedule/web?date=2022-05-29&country=GB')
+    .then(response => response.json())
+    .then(res => setMovies(res))
+    .catch(err => setError(err));
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+        <h1> Welcome to Movie World! </h1>
+        {movies.length > 0? movies.map((m: Movie)=> m.id) : ('loading...')}
+     
     </div>
   );
 }
