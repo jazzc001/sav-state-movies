@@ -1,40 +1,25 @@
-import { toUnicode } from 'punycode';
-import React, {useState, useEffect} from 'react';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import Scheduled from './components/Scheduled'
+import Movie from './components/Movie'
+
+
 import './App.css';
 
-function App() {
+export interface IApplicationProps {}
 
-  const [movies, setMovies] = useState([])
-  const [error, setError] = useState({})
-
-  interface Movie {
-    id: number;
-    name: string;
-    show: {
-      name: string;
-    }
-
-  }
-
-
-  useEffect(()=> {
-    fetch('https://api.tvmaze.com/schedule?date=2022-05-30&country=GB')
-    .then(response => response.json())
-    .then(res => setMovies(res))
-    .catch(err => setError(err));
-  }, [])
+const App: React.FunctionComponent<IApplicationProps> = (props) => {
 
   return (
-    <div className="App">
-     
-        <h1> Welcome to Movie World! </h1>
-        {movies.length > 0? movies.map((m: Movie)=> {
-          return( <li>{m.show.name}, {m.id}</li>)
-         
-          }) : ('loading...')}
-     
-    </div>
-  );
+   <BrowserRouter>
+     <Routes>
+      <Route path="/" element={<Scheduled />} />
+      <Route path='movie'>
+        <Route index element={<Movie />} />
+        <Route path=":number" element={<Movie />} />
+      </Route>
+      
+     </Routes>
+   </BrowserRouter>  );
 }
 
 export default App;
