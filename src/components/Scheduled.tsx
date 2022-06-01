@@ -4,8 +4,8 @@ import Navbar from './Navbar';
 
 function Scheduled() {
 
-  const [movies, setMovies] = useState([])
-  const [error, setError] = useState({})
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState({});
 
   interface IMovie {
     id: number;
@@ -16,19 +16,26 @@ function Scheduled() {
 
   }
 
+  let today = ((new Date()).toISOString()).substring(0, 10)
 
   useEffect(()=> {
-    fetch('https://api.tvmaze.com/schedule?date=2022-05-30&country=GB')
+    fetch(`https://api.tvmaze.com/schedule?date=${today}&country=GB`)
     .then(response => response.json())
     .then(res => setMovies(res))
     .catch(err => setError(err));
   }, [])
 
+  
+
+  
   return (
     <div className="App">
         <Navbar />
         {movies.length > 0? movies.map((m: IMovie)=> {
-          return( <li>{m.show.name}, {m.id}</li>)
+          return( 
+          
+          <li>{m.show.name}, {m.id}</li>
+          )
          
           }) : ('loading...')}
         

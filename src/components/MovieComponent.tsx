@@ -1,11 +1,11 @@
 import React, {useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {IMovieProps} from './SearchBar'
+import {IEpisodeProps} from './SearchBar'
 
 
 
-const MovieComponent = (props: { movie: IMovieProps}) => {
+const MovieComponent = (props: { movie: IEpisodeProps}) => {
     // const [ message, setMessage ] = useState('');
     // const { number } = useParams();
 
