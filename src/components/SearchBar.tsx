@@ -21,6 +21,9 @@ export interface IMovieProps {
         medium: string;
     };
     url: string;
+    summary: string;
+    status: string;
+    genres: [string];
     
 }
 
@@ -43,7 +46,17 @@ const  SearchBar = () => {
         const data = await results.json();
         console.log(data)
         
-        return data.name;
+        return[{
+            id: data.id, 
+            name: data.name, 
+            image: {
+                medium: data.image.medium, 
+            },
+            url: data.url, 
+            summary: data.summary,
+            status: data.status,
+            genres: data.genres
+        }];
         
     }
 
@@ -86,9 +99,25 @@ const  SearchBar = () => {
             
             {episodesSearch && <p> Results for { episodesSearch} ...</p>}
            <div className="movie-container">
-               
-               {episodesFound.length > 0? episodesFound.map((movie: IEpisodeProps) => {
-                    return (<li>{movie.name}, {movie.season}, {movie.number}</li>)}
+               {movieFound.length && movieFound.map((m: IMovieProps) => {
+                   return (
+                    <div className="movie">
+                        <div className="movie-heading">
+                          <h1>{m.name}</h1>
+                        </div>
+                        <div className="movie-img"> 
+                           <img src={m.image.medium} />
+                        </div>
+                        <div className="movie-summary">
+                            <li>{m.summary}</li>
+                            <li>{m.status}</li>
+                            <li>{m.genres}</li>
+                        </div>
+                    </div>
+                   )
+               })}
+               {episodesFound.length > 0? episodesFound.map((e: IEpisodeProps) => {
+                    return (<li>Season {e.season}, Episode {e.number}: {e.name}</li>)}
                 ) : ('loading...')}
            </div>
 
