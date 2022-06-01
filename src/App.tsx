@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Scheduled from './components/Scheduled'
-import Movie from './components/Movie'
+import SearchBar from './components/SearchBar'
 
 
 import './App.css';
@@ -13,10 +13,7 @@ const App: React.FunctionComponent<IApplicationProps> = (props) => {
    <BrowserRouter>
      <Routes>
       <Route path="/" element={<Scheduled />} />
-      <Route path='movie'>
-        <Route index element={<Movie />} />
-        <Route path=":number" element={<Movie />} />
-      </Route>
+      <Route path="/search" element={<SearchBar />} />
       
      </Routes>
    </BrowserRouter>  );

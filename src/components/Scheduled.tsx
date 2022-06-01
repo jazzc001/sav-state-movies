@@ -7,7 +7,7 @@ function Scheduled() {
   const [movies, setMovies] = useState([])
   const [error, setError] = useState({})
 
-  interface Movie {
+  interface IMovie {
     id: number;
     name: string;
     show: {
@@ -27,7 +27,7 @@ function Scheduled() {
   return (
     <div className="App">
         <Navbar />
-        {movies.length > 0? movies.map((m: Movie)=> {
+        {movies.length > 0? movies.map((m: IMovie)=> {
           return( <li>{m.show.name}, {m.id}</li>)
          
           }) : ('loading...')}
