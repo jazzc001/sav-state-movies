@@ -1,31 +1,13 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import EpisodeComponent  from './EpisodeComponent';
+
+import { IMovieProps } from './movies/IMovieProps'
+import { IEpisodeProps } from './episodes/IEposodeProps'
+import EpisodeComponent  from './episodes/EpisodeComponent';
 
 
-export interface IEpisodeProps {
-    id: number;
-    name: string;
-    image: {
-        medium: string;
-    };
-    url: string;
-    season: number;
-    number: number;
-    
-}
 
-export interface IMovieProps {
-    id: number;
-    name: string;
-    image: {
-        medium: string;
-    };
-    url: string;
-    summary: string;
-    status: string;
-    genres: [string];
-    
-}
+
+
 
 
 const  SearchBar = () => {
@@ -86,22 +68,7 @@ const  SearchBar = () => {
     }, [episodesSearch]);
 
 
-    // const myVar = 'name' as ObjectKey;
-    console.log(movieFound)
-    
-    console.log(episodesSearch)
-
-    let seasonGroup = episodesFound.reduce((r: any, a: any) => {
-        r[a.season] = [...r[a.season]|| [], a];
-        return r;
-    }, {})
-
-    console.log(seasonGroup)
-    //length of Season (Object)
-    let seasonLength = Object.keys(seasonGroup).length;
-    console.log(seasonLength)
-    
-    Object.keys(seasonGroup).forEach(key => console.log(key))
+   
     
 
 
@@ -133,23 +100,7 @@ const  SearchBar = () => {
                })}
             
 
-               { seasonLength > 0 ? Object.keys(seasonGroup).map(key => {
-                   return (
-                   <div>
-                       <h2>Season {key}</h2>
-                       {episodesFound.map((e) => {
-                           return (
-                               <div className="episodes">
-
-                                   {e.season == Number(key) ? <img src={e.image.medium}/> : null}
-                               </div>
-                           )
-                       })}
-                       
-                    </div>
-                    )}) :
-                    ('loading...')
-                }
+              <EpisodeComponent episode={episodesFound}/>
            </div>
            
 
