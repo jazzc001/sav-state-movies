@@ -1,5 +1,5 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import MovieComponent  from './MovieComponent';
+import EpisodeComponent  from './EpisodeComponent';
 
 
 export interface IEpisodeProps {
@@ -116,8 +116,8 @@ const  SearchBar = () => {
                     </div>
                    )
                })}
-               {episodesFound.length > 0? episodesFound.map((e: IEpisodeProps) => {
-                    return (<li>Season {e.season}, Episode {e.number}: {e.name}</li>)}
+               {episodesFound.length > 0? episodesFound.map((episode: IEpisodeProps) => {
+                    return (<EpisodeComponent key={episode.url}  episode={episode}></EpisodeComponent>)}
                 ) : ('loading...')}
            </div>
 

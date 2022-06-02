@@ -5,7 +5,7 @@ import {IEpisodeProps} from './SearchBar'
 
 
 
-const MovieComponent = (props: { movie: IEpisodeProps}) => {
+const EpisodeComponent = (props: { episode: IEpisodeProps}) => {
     // const [ message, setMessage ] = useState('');
     // const { number } = useParams();
 
@@ -20,19 +20,25 @@ const MovieComponent = (props: { movie: IEpisodeProps}) => {
     // }, [])
 
 
-    const { movie } = props;
+    const { episode } = props;
+    console.log(episode)
 
     return (
         <div>
-            <div className="movie">
-                <div className="title">
-                    <img src={movie.image.medium} alt={movie.name}/>
-                    <p>{movie.name}</p>
+            <div className="episode">
+                <div className="episode-season">
+                    {}
+                    <li>Season {episode.season}, Episode {episode.number}</li>
                 </div>
+                {episode.number && 
+                    <ul>
+                        {episode.number}
+                    </ul>
+                }
                
             </div>
         </div>
     );
 };
 
-export default MovieComponent;
+export default EpisodeComponent;

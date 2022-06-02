@@ -12,7 +12,11 @@ function Scheduled() {
     name: string;
     show: {
       name: string;
-    }
+      image: {
+        medium: string;
+      }
+    };
+    
 
   }
 
@@ -25,6 +29,7 @@ function Scheduled() {
     .catch(err => setError(err));
   }, [])
 
+  console.log(movies)
   
 
   
@@ -33,8 +38,10 @@ function Scheduled() {
         <Navbar />
         {movies.length > 0? movies.map((m: IMovie)=> {
           return( 
-          
-          <li>{m.show.name}, {m.id}</li>
+              <div>
+                <img src={(m.show.image==null) ?  `https://media.comicbook.com/files/img/default-movie.png` : m.show.image.medium} />
+                <li>{m.show.name}, {m.id}</li>
+              </div>
           )
          
           }) : ('loading...')}
