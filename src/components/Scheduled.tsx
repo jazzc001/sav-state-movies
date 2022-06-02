@@ -40,7 +40,7 @@ function Scheduled() {
           return( 
               <div>
                 <img src={(m.show.image==null) ?  `https://media.comicbook.com/files/img/default-movie.png` : m.show.image.medium} />
-                <li>{m.show.name}, {m.id}</li>
+                <li>{m.show.name}</li>
               </div>
           )
          

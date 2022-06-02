@@ -21,20 +21,17 @@ const EpisodeComponent = (props: { episode: IEpisodeProps}) => {
 
 
     const { episode } = props;
-    console.log(episode)
+    let seasons = {};
+    
+    console.log(episode.season)
 
     return (
         <div>
             <div className="episode">
                 <div className="episode-season">
-                    {}
-                    <li>Season {episode.season}, Episode {episode.number}</li>
+                    <li>{episode.season == 1  ? episode.season : episode.season   }</li>
                 </div>
-                {episode.number && 
-                    <ul>
-                        {episode.number}
-                    </ul>
-                }
+                
                
             </div>
         </div>
