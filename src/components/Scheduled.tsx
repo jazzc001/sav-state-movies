@@ -29,13 +29,9 @@ function Scheduled() {
     .catch(err => setError(err));
   }, [])
 
-  console.log(movies)
-  
-
   
   return (
     <div className="App">
-        <Navbar />
         {movies.length > 0? movies.map((m: IMovie)=> {
           return( 
               <div>

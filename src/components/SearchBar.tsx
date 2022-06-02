@@ -1,5 +1,7 @@
 import { FormEvent, useState, useEffect } from 'react';
 
+import Scheduled from './Scheduled'
+
 import { IMovieProps } from './movies/IMovieProps';
 import searchForMovie from './movies/MovieApiRequest'
 import  MovieComponent from './movies/MovieComponent';
@@ -14,6 +16,7 @@ const  SearchBar = () => {
     const [episodesFound, setEpisodesFound] = useState<IEpisodeProps[]>([]);
     const [movieFound, setMovieFound] = useState<IMovieProps[]>([]);
     const [episodesSearch, setEpisodesSearch] = useState('');
+    const [scheduledMovieStatus, setScheduledMovieStatus] = useState('on')
 
 
     const handleSearch = (event: FormEvent<HTMLFormElement>) => {
@@ -21,6 +24,7 @@ const  SearchBar = () => {
         const form  = event.target as HTMLFormElement;
         const input = form.querySelector('#searchText') as HTMLInputElement;
         setEpisodesSearch(input.value);
+        setScheduledMovieStatus('off');
         
     }
 
@@ -38,7 +42,7 @@ const  SearchBar = () => {
         })();
     }, [episodesSearch]);
 
-    
+
     return (
         <div>
             <form className="searchForm" onSubmit={event => handleSearch(event)}>
@@ -46,8 +50,13 @@ const  SearchBar = () => {
                 <button>Search</button>
             </form>
            <div>
-               <MovieComponent movie={movieFound} />
-              <EpisodeComponent episode={episodesFound}/>
+               {scheduledMovieStatus =='on' ? 
+               <Scheduled /> : 
+               <div>
+                <MovieComponent movie={movieFound} />
+                <EpisodeComponent episode={episodesFound}/>
+               </div>
+                }
            </div>
         </div>
     )
