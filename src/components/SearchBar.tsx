@@ -1,51 +1,22 @@
-import React, { FormEvent, useState, useEffect } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 
-import { IMovieProps } from './movies/IMovieProps'
+import { IMovieProps } from './movies/IMovieProps';
+import searchForMovie from './movies/MovieApiRequest'
+import  MovieComponent from './movies/MovieComponent';
+
 import { IEpisodeProps } from './episodes/IEposodeProps'
+import searchForEpisodes from './episodes/EpisodeApiRequest'
 import EpisodeComponent  from './episodes/EpisodeComponent';
-
-
-
-
-
 
 
 const  SearchBar = () => {
 
     const [episodesFound, setEpisodesFound] = useState<IEpisodeProps[]>([]);
+    const [movieFound, setMovieFound] = useState<IMovieProps[]>([]);
     const [episodesSearch, setEpisodesSearch] = useState('');
 
-    const [movieFound, setMovieFound] = useState<IMovieProps[]>([]);
 
-    const searchForEpisodes = async (query: string): Promise<IEpisodeProps[]> => {
-        const results = await fetch(`https://api.tvmaze.com/singlesearch/shows?q=${query}&embed=episodes`)
-        const data = await results.json();
-
-        return data._embedded.episodes;
-    }
-
-    const searchForMovie = async (query: string): Promise<IMovieProps[]> => {
-        const results = await fetch(`https://api.tvmaze.com/singlesearch/shows?q=${query}&embed=episodes`)
-        const data = await results.json();
-        console.log(data)
-        
-        return[{
-            id: data.id, 
-            name: data.name, 
-            image: {
-                medium: data.image.medium, 
-            },
-            url: data.url, 
-            summary: data.summary,
-            status: data.status,
-            genres: data.genres
-        }];
-        
-    }
-
-    
-
-    const search = (event: FormEvent<HTMLFormElement>) => {
+    const handleSearch = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form  = event.target as HTMLFormElement;
         const input = form.querySelector('#searchText') as HTMLInputElement;
@@ -67,46 +38,21 @@ const  SearchBar = () => {
         })();
     }, [episodesSearch]);
 
-
-   
     
-
-
     return (
         <div>
-            <form className="searchForm" onSubmit={event => search(event)}>
+            <form className="searchForm" onSubmit={event => handleSearch(event)}>
                 <input id='searchText' type='text' />
                 <button>Search</button>
             </form>
-            
-            {episodesSearch && <p> Results for { episodesSearch} ...</p>}
-           <div className="movie-container">
-               {movieFound.length && movieFound.map((m: IMovieProps) => {
-                   return (
-                    <div className="movie">
-                        <div className="movie-heading">
-                          <h1>{m.name}</h1>
-                        </div>
-                        <div className="movie-img"> 
-                           <img src={m.image.medium} />
-                        </div>
-                        <div className="movie-summary">
-                            <li>{m.summary}</li>
-                            <li>{m.status}</li>
-                            <li>{m.genres}</li>
-                        </div>
-                    </div>
-                   )
-               })}
-            
-
+           <div>
+               <MovieComponent movie={movieFound} />
               <EpisodeComponent episode={episodesFound}/>
            </div>
-           
-
         </div>
     )
 
 }
 
 export default SearchBar;
+ 
