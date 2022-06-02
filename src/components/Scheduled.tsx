@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect} from 'react';
-import Navbar from './Navbar';
+import './Scheduled.css';
 
 function Scheduled() {
 
@@ -31,12 +31,12 @@ function Scheduled() {
 
   
   return (
-    <div className="App">
+    <div className="scheduled-movie-container">
         {movies.length > 0? movies.map((m: IMovie)=> {
           return( 
               <div>
                 <img src={(m.show.image==null) ?  `https://media.comicbook.com/files/img/default-movie.png` : m.show.image.medium} />
-                <li>{m.show.name}</li>
+                <ul>{m.show.name}</ul>
               </div>
           )
          

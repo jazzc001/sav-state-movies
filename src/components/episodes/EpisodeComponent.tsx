@@ -1,5 +1,4 @@
-import React, {useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import './Episodes.css'
 import { IEpisodeProps } from './IEposodeProps'
 
 
@@ -33,19 +32,20 @@ const EpisodeComponent = (props: { episode: IEpisodeProps[]}) => {
     // Object.keys(seasonGroup).forEach(key => console.log(key))
 
     return (
-        <div>
+        <div className='episode-container'>
             { seasonLength > 0 ? Object.keys(seasonGroup).map(key => {
                 return (
                 <div>
-                    <h2>Season {key}</h2>
-                    {episode.map((e) => {
-                        return (
-                            <div className="episodes">
-
-                                {e.season == Number(key) ? <img src={e.image.medium} alt={e.name}/> : null}
-                            </div>
-                        )
-                    })}
+                    <h2 className='season'>Season {key}</h2>
+                    <div className='episode'>
+                        {episode.map((e) => {
+                            return (
+                                <div >
+                                    {e.season == Number(key) ? <img src={e.image.medium} alt={e.url}/> : null}
+                                </div>
+                            )
+                        })}
+                    </div>
                     
                 </div>
                 )}) :
