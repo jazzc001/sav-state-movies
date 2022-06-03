@@ -45,6 +45,9 @@ const  SearchBar = () => {
 
     return (
         <div>
+            <div className="navbar">
+            <h1> Sav State </h1>
+            </div>
             <form className="searchForm" onSubmit={event => handleSearch(event)}>
                 <input id='searchText' type='text' />
                 <button>Search</button>

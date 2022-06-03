@@ -40,8 +40,17 @@ const EpisodeComponent = (props: { episode: IEpisodeProps[]}) => {
                     <div className='episode'>
                         {episode.map((e) => {
                             return (
-                                <div >
-                                    {e.season == Number(key) ? <img src={(e.image==null) ?  `https://media.comicbook.com/files/img/default-movie.png` : e.image.medium} alt={e.url}/> : null}
+                                <div className='img__wrap'>
+                                    {e.season == Number(key) ? 
+                                    <div>
+                                        <a href={e.url}>
+                                            <img className='img__img' src={(e.image==null) ?  
+                                                `https://media.comicbook.com/files/img/default-movie.png` : 
+                                                e.image.medium} />
+                                        </a>
+                                        <p className='img__description'>episode {e.number}: {e.name}</p>
+                                    </div>
+                                    : null}
                                 </div>
                             )
                         })}

@@ -16,6 +16,7 @@ function Scheduled() {
         medium: string;
       }
     };
+    url: string;
     
 
   }
@@ -31,12 +32,21 @@ function Scheduled() {
 
   
   return (
+    
     <div className="scheduled-movie-container">
         {movies.length > 0? movies.map((m: IMovie)=> {
           return( 
               <div>
-                <img src={(m.show.image==null) ?  `https://media.comicbook.com/files/img/default-movie.png` : m.show.image.medium} />
-                <ul>{m.show.name}</ul>
+                
+                <div className='img__wrap'>
+                    <a href={m.url}>
+                        <img className='img__img' src={(m.show.image==null) ?  
+                            `https://media.comicbook.com/files/img/default-movie.png` : 
+                            m.show.image.medium} />
+                    </a>
+                    <p className='img__description'>{m.show.name}</p>
+                </div>
+                
               </div>
           )
          
