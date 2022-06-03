@@ -1,6 +1,6 @@
-import React, {useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { IMovieProps } from './IMovieProps'
+import './Movie.css'
+
 
 
 const MovieComponent = (props: { movie: IMovieProps[]}) => {
@@ -10,24 +10,38 @@ const MovieComponent = (props: { movie: IMovieProps[]}) => {
    
     return (
         <div className="movie-container">
-           {movie.length && movie.map((m) => {
-                   return (
-                    <div className="movie">
-                        <div className="movie-heading">
-                          <h1>{m.name}</h1>
+
+            <div className="movie-container-left">
+            {movie.length && movie.map((m) => {
+                    return (
+                        <div className="movie">
+                            <div className="title">
+                            <h1>{m.name}</h1>
+                            </div>
+                            <div className="img"> 
+                            <img src={m.image.medium} />
+                            </div>
+                            
                         </div>
-                        <div className="movie-img"> 
-                           <img src={m.image.medium} />
+                    )
+                })}
+                        
+            </div>
+            <div className="movie-container-right">
+            {movie.length && movie.map((m) => {
+                    return (
+                        <div className="movie">
+                            
+                            <div className="movie-summary">
+                                <li>Summary: {m.summary.substring(3).slice(0, -4)}</li><br></br>
+                                <li>Status: {m.status}</li><br></br>
+                                <li>Genres: {m.genres}</li>
+                            </div>
                         </div>
-                        <div className="movie-summary">
-                            <li>{m.summary}</li>
-                            <li>{m.status}</li>
-                            <li>{m.genres}</li>
-                        </div>
-                    </div>
-                   )
-               })}
-                       
+                    )
+                })}
+                        
+            </div>
         </div>
     );
 };

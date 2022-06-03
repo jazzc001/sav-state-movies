@@ -1,0 +1,31 @@
+.movie-container {
+    background: white;
+    display: grid;
+    grid-template-columns: 25% 35%;
+    grid-template-rows: 400px;
+    grid-column-gap: 50px;
+  }
+  
+  .movie-container-left {
+    background: white;
+    margin: 5px 50px 20px 0px;
+    height: 200px;
+    padding-left: 25%;
+    padding-top: 5px;
+    color: rgba(33,33,33,0.8);
+  }
+  
+  .movie-container-right {
+    background: white;
+    margin: 5px 50px 20px 0px;
+    height: 200px;
+    padding-right: 0%;
+    padding-top: 150px;
+    overflow-wrap: break-word;
+    color: rgba(33,33,33,0.8);
+  }
+  
+.movie-summary {
+    list-style-type: none;
+}
+  
