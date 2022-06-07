@@ -1,4 +1,5 @@
 import { FormEvent, useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 import Scheduled from './Scheduled'
 
@@ -18,6 +19,10 @@ const  SearchBar = () => {
     const [episodesSearch, setEpisodesSearch] = useState('');
     const [scheduledMovieStatus, setScheduledMovieStatus] = useState('on')
 
+    const [ epId, setEpid ] = useState<Number>();
+    // const { movieId } = useParams();
+
+
 
     const handleSearch = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -34,13 +39,16 @@ const  SearchBar = () => {
             if (query) {
                 const response = await searchForEpisodes(query);
                 const response2 = await searchForMovie(query);
-                // type ObjectKey = keyof typeof response;
-                // console.log(response['name' as ObjectKey], response['url' as ObjectKey]);
+                
                 setEpisodesFound(response);
+                setEpid(response2[0].id)
                 setMovieFound(response2)
+                
             }
         })();
     }, [episodesSearch]);
+
+    console.log(epId)
 
 
     return (

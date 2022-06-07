@@ -16,7 +16,7 @@ const MovieComponent = (props: { movie: IMovieProps[]}) => {
                     return (
                         <div className="movie">
                             <div className="title">
-                            <h1>{m.name}</h1>
+                            <h1 className="movie-name">{m.name}</h1>
                             </div>
                             <div className="img"> 
                             <img src={m.image.medium} />

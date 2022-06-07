@@ -3,16 +3,16 @@ import { IEpisodeProps } from './IEposodeProps'
 
 
 const EpisodeComponent = (props: { episode: IEpisodeProps[]}) => {
-    // const [ message, setMessage ] = useState('');
-    // const { number } = useParams();
+    // const [ epId, setEpid ] = useState('');
+    // const { epId } = useParams();
 
     // useEffect(() => {
-    //     if (number) 
+    //     if (epId) 
     //     {
-    //         setMessage(`The number is ${number}`)
+    //         setEpid(`The epId is ${epId}`)
     //     }
     //     else {
-    //         setMessage('No number was provided')
+    //         setEpid('No epId was provided')
     //     }
     // }, [])
 
