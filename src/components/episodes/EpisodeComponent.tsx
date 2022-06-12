@@ -3,20 +3,7 @@ import { IEpisodeProps } from './IEposodeProps'
 
 
 const EpisodeComponent = (props: { episode: IEpisodeProps[]}) => {
-    // const [ epId, setEpid ] = useState('');
-    // const { epId } = useParams();
-
-    // useEffect(() => {
-    //     if (epId) 
-    //     {
-    //         setEpid(`The epId is ${epId}`)
-    //     }
-    //     else {
-    //         setEpid('No epId was provided')
-    //     }
-    // }, [])
-
-
+    
     const { episode } = props;
     
     // groupping the episodes in seasons as an object
