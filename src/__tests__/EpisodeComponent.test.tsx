@@ -59,7 +59,16 @@ describe('render Movie Component', () => {
      expect(linkedElement[0]).toHaveAttribute('role', 'episode-name')
      
  })
- 
+ test('Episode number', () => {
+   
+
+    const linkedElement = screen.getAllByRole('episode-number');
+    expect(linkedElement[0]).toHaveTextContent(mockingEpisodeFound[0].number.toString())
+    expect(linkedElement[1]).toHaveTextContent(mockingEpisodeFound[1].number.toString())
+    expect(linkedElement[2]).toHaveTextContent(mockingEpisodeFound[2].number.toString())
+    expect(linkedElement[0]).toHaveAttribute('role', 'episode-number')
+    
+})
 
  
 

@@ -48,7 +48,10 @@ const EpisodeComponent = (props: { episode: IEpisodeProps[]}) => {
                                                 `https://media.comicbook.com/files/img/default-movie.png` : 
                                                 e.image.medium} />
                                         </a>
-                                        <p role='episode-name' className='img-description'>episode {e.number}: {e.name}</p>
+                                        <p  className='img-description'>
+                                            <div role='episode-number'>episode {e.number}:  </div>
+                                            <div role='episode-name' >{e.name}</div>
+                                        </p>
                                     </div>
                                     : null}
                                 </div>
