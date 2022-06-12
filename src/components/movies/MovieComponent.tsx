@@ -19,7 +19,7 @@ const MovieComponent = (props: { movie: IMovieProps[]}) => {
                             <h1 className="movie-name" role='movie-name' key={m.name}>{m.name}</h1>
                             </div>
                             <div className="movie-img" role='movie-img' > 
-                            <img src={m.image.medium} />
+                            <img role='movie-img' src={m.image.medium} />
                             </div>
                             
                         </div>

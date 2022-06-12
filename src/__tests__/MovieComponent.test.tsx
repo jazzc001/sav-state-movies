@@ -67,6 +67,11 @@ test('Movie Genres', () => {
     expect(linkedElement2).toHaveAttribute('role', 'genres')
 })
 
+test('Movie img', () => {
+    const linkedElement = screen.getByRole('movie-img');
+    expect(linkedElement).toHaveAttribute('src', 'love-island.jpg')
+})
+
 });
 
 
