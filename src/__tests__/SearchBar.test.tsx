@@ -1,31 +1,8 @@
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-
-
 import SearchBar  from '../components/SearchBar'
-const server = setupServer(
-    // Describe the requests to mock.
-    rest.get('https://api.tvmaze.com/singlesearch/shows', (req, res, ctx) => {
-      return res(
-        ctx.json([{
-            id: 456,
-            name: 'Love Island',
-            image: {
-                medium: 'love-island.jpg',
-            },
-            url: 'www.love-island.com',
-            summary: '***this is love island mocking movie****',
-            status: 'ended',
-            genres: ['King']
-        }]),
-      )
-    }),
-  )
-  beforeAll(() => server.listen())
-  afterEach(() => server.restoreHandlers())
-  afterAll(() => server.close())
-  
+
 
   describe('SearchBar API', () => {
     
@@ -34,8 +11,8 @@ const server = setupServer(
     })
 
     test('Scheduled component', async () => {
-        const out = await waitFor(() => screen.getAllByRole('scheduled'))
-        expect(out[0]).toBeInTheDocument();
+        const scheduledComponent = screen.getAllByRole('scheduled')
+        expect(scheduledComponent[0]).toBeInTheDocument();
     });
 
  
