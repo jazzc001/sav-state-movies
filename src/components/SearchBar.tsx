@@ -30,6 +30,7 @@ const  SearchBar = () => {
         const input = form.querySelector('#searchText') as HTMLInputElement;
         setEpisodesSearch(input.value);
         setScheduledMovieStatus('off');
+        input.value = ''
         
     }
 

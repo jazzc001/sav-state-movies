@@ -52,6 +52,36 @@ const server = setupServer(
       expect(inputElement.value).toBe('love island');
       
     });
+
+    test('should have empty input when search button is clicked', async () => {
+      const inputElement = screen.getByPlaceholderText('search a show');
+      const buttonElement = screen.getByRole('search');
+      fireEvent.change(inputElement, { target: {value: 'love island'} });
+      fireEvent.click(buttonElement);
+      expect(inputElement.value).toBe('');
+
+      
+    });
+
+    test('should have show movie component when search button is clicked', async () => {
+      const inputElement = screen.getByPlaceholderText('search a show');
+      const buttonElement = screen.getByRole('search');
+      fireEvent.change(inputElement, { target: {value: 'love island'} });
+      fireEvent.click(buttonElement);
+      const movieComponent = screen.getByRole('movie-component')
+      expect(movieComponent).toBeInTheDocument()
+      
+    });
+
+    test('should have episode component when search button is clicked', async () => {
+      const inputElement = screen.getByPlaceholderText('search a show');
+      const buttonElement = screen.getByRole('search');
+      fireEvent.change(inputElement, { target: {value: 'love island'} });
+      fireEvent.click(buttonElement);
+      const episodeComponent = screen.getByRole('episode-component')
+      expect(episodeComponent).toBeInTheDocument()
+      
+    });
 });
 
 
