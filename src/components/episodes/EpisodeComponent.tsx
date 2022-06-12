@@ -43,8 +43,8 @@ const EpisodeComponent = (props: { episode: IEpisodeProps[]}) => {
                                 <div className='img__wrap'>
                                     {e.season == Number(key) ? 
                                     <div>
-                                        <a href={e.url}>
-                                            <img className='img-img' src={(e.image==null) ?  
+                                        <a role='episode-url' href={e.url}>
+                                            <img role='episode-img' className='img-img' src={(e.image==null) ?  
                                                 `https://media.comicbook.com/files/img/default-movie.png` : 
                                                 e.image.medium} />
                                         </a>

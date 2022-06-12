@@ -11,9 +11,9 @@ describe('render Movie Component', () => {
         id: 456,
         name: 'Love Island e1',
         image: {
-            medium: 'love-island.jpg',
+            medium: 'love-island-e1.jpg',
         },
-        url: 'www.love-island.com',
+        url: 'www.love-island-e1.com',
         season: 3,
         number: 1
         
@@ -22,9 +22,9 @@ describe('render Movie Component', () => {
         id: 457,
         name: 'Love Island e2',
         image: {
-            medium: 'love-island.jpg',
+            medium: 'love-island-e2.jpg',
         },
-        url: 'www.love-island.com',
+        url: 'www.love-island-e2.com',
         season: 3,
         number: 2
         
@@ -33,9 +33,9 @@ describe('render Movie Component', () => {
         id: 458,
         name: 'Love Island e3',
         image: {
-            medium: 'love-island.jpg',
+            medium: 'love-island-e3.jpg',
         },
-        url: 'www.love-island.com',
+        url: 'www.love-island-e3.com',
         season: 3,
         number: 3
         
@@ -67,6 +67,21 @@ describe('render Movie Component', () => {
     expect(linkedElement[1]).toHaveTextContent(mockingEpisodeFound[1].number.toString())
     expect(linkedElement[2]).toHaveTextContent(mockingEpisodeFound[2].number.toString())
     expect(linkedElement[0]).toHaveAttribute('role', 'episode-number')
+    
+})
+test('Episode url', () => {
+    const linkedElement = screen.getAllByRole('episode-url');
+    expect(linkedElement[0]).toHaveAttribute('href', 'www.love-island-e1.com')
+    expect(linkedElement[1]).toHaveAttribute('href', 'www.love-island-e2.com')
+    expect(linkedElement[2]).toHaveAttribute('href', 'www.love-island-e3.com')
+    
+})
+
+test('Episode img', () => {
+    const linkedElement = screen.getAllByRole('episode-img');
+    expect(linkedElement[0]).toHaveAttribute('src', 'love-island-e1.jpg')
+    expect(linkedElement[1]).toHaveAttribute('src', 'love-island-e2.jpg')
+    expect(linkedElement[2]).toHaveAttribute('src', 'love-island-e3.jpg')
     
 })
 
