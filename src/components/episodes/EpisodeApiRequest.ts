@@ -1,4 +1,4 @@
-import { IEpisodeProps } from '../episodes/IEposodeProps'
+import { IEpisodeProps } from './IEposodeProps'
 
 
 const searchForEpisodes = async (query: string): Promise<IEpisodeProps[]> => {
