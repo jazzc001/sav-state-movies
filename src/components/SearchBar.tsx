@@ -57,8 +57,8 @@ const  SearchBar = () => {
             <h1> Sav State </h1>
             </div>
             <form className="searchForm" onSubmit={event => handleSearch(event)}>
-                <input id='searchText' type='text' />
-                <button>Search</button>
+                <input id='searchText' type='text' placeholder='search a show'/>
+                <button role='search'>Search</button>
             </form>
            <div>
                {scheduledMovieStatus =='on' ? 

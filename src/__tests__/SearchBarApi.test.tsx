@@ -1,4 +1,4 @@
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -6,7 +6,7 @@ import { setupServer } from 'msw/node'
 import SearchBar  from '../components/SearchBar'
 const server = setupServer(
     // Describe the requests to mock.
-    rest.get('/', (req, res, ctx) => {
+    rest.get('https://api.tvmaze.com/singlesearch/shows', (req, res, ctx) => {
       return res(
         ctx.json([{
             id: 456,
@@ -27,16 +27,31 @@ const server = setupServer(
   afterAll(() => server.close())
   
 
-test('Movie API', async () => {
-    render(<SearchBar/>)
+  describe('SearchBar API', () => {
+    
+    beforeEach(() => {
+        render(<SearchBar />)
+    })
 
-    const out = await waitFor(() => screen.getByRole('scheduled'))
-    expect(out).toBeInTheDocument()
-    expect(out).toHaveAttribute('role', 'scheduled')
-   
+    test('Scheduled component', async () => {
+        const out = await waitFor(() => screen.getAllByRole('scheduled'))
+        expect(out[0]).toBeInTheDocument();
+    });
 
+ 
 
+    test('should render input element in search bar', async () => {
+      const inputElement = screen.getByPlaceholderText('search a show');
+      expect(inputElement).toBeInTheDocument();
+      
+    });
 
+    test('should be able to type in input in search bar', async () => {
+      const inputElement = screen.getByPlaceholderText('search a show');
+      fireEvent.change(inputElement, { target: {value: 'love island'} });
+      expect(inputElement.value).toBe('love island');
+      
+    });
 });
 
 
