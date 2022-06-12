@@ -9,16 +9,16 @@ const MovieComponent = (props: { movie: IMovieProps[]}) => {
     
    
     return (
-        <div className="movie-container">
+        <div key='move-container' className="movie-container">
 
-            <div className="movie-container-left">
+            <div key='move-container-left' className="movie-container-left">
             {movie.length && movie.map((m) => {
                     return (
-                        <div className="movie">
+                        <div key='movie' className="movie">
                             <div className="title">
-                            <h1 className="movie-name">{m.name}</h1>
+                            <h1 className="movie-name" role='movie-name' key={m.name}>{m.name}</h1>
                             </div>
-                            <div className="img"> 
+                            <div className="movie-img" role='movie-img' > 
                             <img src={m.image.medium} />
                             </div>
                             
@@ -33,9 +33,9 @@ const MovieComponent = (props: { movie: IMovieProps[]}) => {
                         <div className="movie">
                             
                             <div className="movie-summary">
-                                <li>Summary: {m.summary.substring(3).slice(0, -4)}</li><br></br>
-                                <li>Status: {m.status}</li><br></br>
-                                <li>Genres: {m.genres}</li>
+                                <li role='summary' key={m.summary} >Summary: {m.summary.substring(3).slice(0, -4)}</li><br></br>
+                                <li role='status'>Status: {m.status}</li><br></br>
+                                <li role='genres' >Genres: {m.genres}</li>
                             </div>
                         </div>
                     )
