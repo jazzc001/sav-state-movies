@@ -4,33 +4,33 @@ import { setupServer } from 'msw/node'
 import SearchBar  from '../components/SearchBar'
 
 
-  describe('SearchBar API', () => {
+  describe('SearchBar ', () => {
     
     beforeEach(() => {
         render(<SearchBar />)
     })
 
-    test('Scheduled component', async () => {
+    test('Scheduled component', () => {
         const scheduledComponent = screen.getAllByRole('scheduled')
         expect(scheduledComponent[0]).toBeInTheDocument();
     });
 
  
 
-    test('should render input element in search bar', async () => {
+    test('should render input element in search bar', () => {
       const inputElement = screen.getByPlaceholderText('search a show');
       expect(inputElement).toBeInTheDocument();
       
     });
 
-    test('should be able to type in input in search bar', async () => {
+    test('should be able to type in input in search bar',  () => {
       const inputElement = screen.getByPlaceholderText('search a show');
       fireEvent.change(inputElement, { target: {value: 'love island'} });
       expect(inputElement.value).toBe('love island');
       
     });
 
-    test('should have empty input when search button is clicked', async () => {
+    test('should have empty input when search button is clicked', () => {
       const inputElement = screen.getByPlaceholderText('search a show');
       const buttonElement = screen.getByRole('search');
       fireEvent.change(inputElement, { target: {value: 'love island'} });
@@ -40,7 +40,7 @@ import SearchBar  from '../components/SearchBar'
       
     });
 
-    test('should have show movie component when search button is clicked', async () => {
+    test('should have show movie component when search button is clicked', () => {
       const inputElement = screen.getByPlaceholderText('search a show');
       const buttonElement = screen.getByRole('search');
       fireEvent.change(inputElement, { target: {value: 'love island'} });
@@ -50,7 +50,8 @@ import SearchBar  from '../components/SearchBar'
       
     });
 
-    test('should have episode component when search button is clicked', async () => {
+
+    test('should have episode component when search button is clicked', () => {
       const inputElement = screen.getByPlaceholderText('search a show');
       const buttonElement = screen.getByRole('search');
       fireEvent.change(inputElement, { target: {value: 'love island'} });
