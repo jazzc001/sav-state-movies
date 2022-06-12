@@ -33,18 +33,18 @@ function Scheduled() {
   
   return (
     
-    <div className="scheduled-movie-container">
+    <div role="scheduled-movie-container" className="scheduled-movie-container">
         {movies.length > 0? movies.map((m: IMovie)=> {
           return( 
               <div>
                 
                 <div className='img__wrap'>
-                    <a href={m.url}>
-                        <img className='img__img' src={(m.show.image==null) ?  
+                    <a role='img-url' href={m.url}>
+                        <img role='img-src' className='img__img' src={(m.show.image==null) ?  
                             `https://media.comicbook.com/files/img/default-movie.png` : 
                             m.show.image.medium} />
                     </a>
-                    <p className='img__description'>{m.show.name}</p>
+                    <p role='img-desciption' className='img__description'>{m.show.name}</p>
                 </div>
                 
               </div>

@@ -62,10 +62,14 @@ const  SearchBar = () => {
             </form>
            <div>
                {scheduledMovieStatus =='on' ? 
-               <Scheduled /> : 
+               <div role='scheduled'><Scheduled /></div> : 
                <div>
-                <MovieComponent movie={movieFound} />
-                <EpisodeComponent episode={episodesFound}/>
+                <div role='movie-component'>
+                    <MovieComponent movie={movieFound} />
+                </div>
+                <div role='episode-component'>
+                    <EpisodeComponent episode={episodesFound}/>
+                </div>
                </div>
                 }
            </div>
